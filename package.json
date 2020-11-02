@@ -1,0 +1,29 @@
+{
+    "name": "chatctl",
+    "version": "1.19.0-alpha",
+    "description": "Universe.Chat CLI",
+    "main": "index",
+    "typings": "index",
+    "scripts": {
+        "0": "sudo apt-get -y update",
+        "1": "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4",
+        "2": "echo 'deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse' | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list",
+        "3": "sudo apt-get -y update && sudo apt-get install -y curl && curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -",
+        "4": "sudo apt-get install -y build-essential mongodb-org nodejs graphicsmagick",
+        "4a": "sudo apt-get install -y npm",
+        "5": "sudo npm install -g inherits n && sudo n 12.14.0",
+        "6": "curl -L https://gitlab.com/mc2labs/universe/chat/Web/-/archive/3.8.0-canary.rc.0/Web-3.8.0-canary.rc.0.tar.gz -o /tmp/universe.chat.tgz",
+        "7": "tar -xzf /tmp/universe.chat.tgz -C /tmp",
+        "8": "cd /tmp/bundle/programs/server && npm install",
+        "9": "sudo mv /tmp/bundle /opt/Universe.Chat",
+        "10": "sudo useradd -M universechat && sudo usermod -L universechat",
+        "11": "sudo chown -R universechat:universechat /opt/Universe.Chat",
+        "12": "sudo bash ./manual-install.sh",
+        "13": "sudo sed -i 's/^#  engine:/  engine: mmapv1/'  /etc/mongod.conf",
+        "14": "sudo sed -i 's/^#replication:/replication:\n  replSetName: rs01/' /etc/mongod.conf",
+        "15": "sudo systemctl enable mongod && sudo systemctl start mongod",
+        "16": "mongo --eval 'printjson(rs.initiate())'",
+        "17": "sudo systemctl enable universechat && sudo systemctl start universechat",
+        "all": "npm run 1 && npm run 2 && npm run 3 && npm run 4 && npm run 5 && npm run 6 && npm run 7 && npm run 8 && npm run 9 && npm run 10 && npm run 11 && npm run 12 && npm run 13 && npm run 14 && npm run 15 && npm run 16 && npm run 17"
+    }
+  }
