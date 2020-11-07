@@ -484,7 +484,7 @@ create_universechat_systemd_file(){
 Description=The Universe.Chat server
 After=network.target remote-fs.target nss-lookup.target mongod.service
 [Service]
-ExecStart=$node_path /opt/Universe.Chat/main.js
+ExecStart=$node_path /opt/Universe.Chat/bundle/main.js
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=universechat
@@ -1151,7 +1151,8 @@ do_backup(){
 
 main() {
     # Pre-release Q3 2020 - Canary - 3.8.0-canary.rc.0
-    local VERSION="3.8.0-canary.rc.0"
+    local VERSION=$UNIVERSE_CHAT_VERSION || "Web-3.8.0-canary.0"
+    local VERSION_FILENAME="universe.chat.latest.tar.gz"
     # Temp GitLab key
     local GLKEY="pKsf_bUjQ6C5NJevR8mn"
     local -r NODE_VERSION="v12.14.0"
@@ -1159,15 +1160,15 @@ main() {
     local MONGO_VERSION=""
     local -r MONGO_URL="mongodb://localhost:27017/universechat?replicaSet=rs01"
     local -r MONGO_OPLOG_URL="mongodb://localhost:27017/local?replicaSet=rs01"
-     
-    local UNIVERSECHAT_DOWNLOAD_URL="https://gitlab.com/mc2labs/universe/chat/Web/-/archive/$VERSION/Web-$VERSION.tar.gz"
+
+    local UNIVERSECHAT_DOWNLOAD_URL="https://github.com/MC2-Universe/releases/releases/download/$VERSION/$VERSION_FILENAME"
     local -r NODE_DEB_DOWNLOAD_URL="https://deb.nodesource.com/setup_12.x"
     local -r NODE_RPM_DOWNLOAD_URL="https://rpm.nodesource.com/setup_12.x"
     local -r UNIVERSECHAT_DIR="/opt/Universe.Chat"
     local -r UNIVERSECHAT_DIR_UPDATE="/opt/Universe.Chat.bkup"
-    local -r UNIVERSECHAT_VERSION_INFO_URL="https://gitlab.com/mc2labs/universe/chat/Web/-/releases/$VERSION"
+    local -r UNIVERSECHAT_VERSION_INFO_URL="https://github.com/MC2-Universe/releases/releases/tag/$VERSION"
      
-    local -r CHATCTL_DOWNLOAD_URL="https://gitlab.com/mc2labs/universe/chat/appkit/InstallUpdater/-/raw/master/chatctl"
+    local -r CHATCTL_DOWNLOAD_URL="https://raw.githubusercontent.com/MC2-Universe/chatctl/master/chatctl"
     local -r CHATCTL_DIRECTORY="/usr/local/bin"
     local -r CHATCTL_TEMP_DIRECTORY="/tmp"
     

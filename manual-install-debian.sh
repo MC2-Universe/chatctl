@@ -8,16 +8,16 @@
  curl -L https://$GITLAB_USER:$GITLAB_TOKEN@gitlab.com/mc2labs/universe/chat/Web/-/archive/3.8.0-canary.rc.0/Web-3.8.0-canary.rc.0.tar.gz -o /tmp/universe.chat.tgz
  tar -xzf /tmp/universe.chat.tgz -C /tmp
  cd /tmp/bundle/programs/server npm install
- sudo mv /tmp/bundle /opt/Universe.Chat
+ sudo mv /tmp/bundle /var/www/universe.chat
  sudo useradd -M universechat sudo usermod -L universechat
- sudo chown -R universechat:universechat /opt/Universe.Chat
+ sudo chown -R universechat:universechat /var/www/universe.chat
 
  cat << EOF |sudo tee -a /lib/systemd/system/universechat.service
     [Unit]
     Description=The Universe.Chat server
     After=network.target remote-fs.target nss-lookup.target nginx.target mongod.target
     [Service]
-    ExecStart=/usr/local/bin/node /opt/Universe.Chat/main.js
+    ExecStart=/usr/local/bin/node /var/www/universe.chat/main.js
     StandardOutput=syslog
     StandardError=syslog
     SyslogIdentifier=universechat
@@ -30,7 +30,7 @@
     &&
     MONGO_URL=mongodb://localhost:27017/universechat?replicaSet=rs01
     MONGO_OPLOG_URL=mongodb://localhost:27017/local?replicaSet=rs01
-    ROOT_URL=http://your-host-name.com-as-accessed-from-internet:3000
+    ROOT_URL=http://localhost:3000
     PORT=3000
  sudo sed -i "s/^#  engine:/  engine: wiredTiger/"  /etc/mongod.conf
  sudo sed -i "s/^#replication:/replication:\n  replSetName: rs01/" /etc/mongod.conf
