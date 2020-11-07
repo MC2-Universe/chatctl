@@ -453,7 +453,7 @@ initiate_and_start_mongo(){
 }
 
 install_universechat(){
-    curl -L $UNIVERSECHAT_DOWNLOAD_URL?private_token=$gitlab_token -o /tmp/universe.chat.tgz
+    curl -L $UNIVERSECHAT_DOWNLOAD_URL-o /tmp/universe.chat.tgz
     tar -xzf /tmp/universe.chat.tgz -C /tmp
     cd /tmp/bundle/programs/server && npm install
     # add npm install node-gyp@5.0.1 to fix 4 moderate severity vulnerabilities
@@ -751,7 +751,7 @@ get_universechat_latest_version(){
     if ! command_exists curl; then
         apt-get install -y curl
     fi
-    latest_universechat_version=$(curl $UNIVERSECHAT_VERSION_INFO_URL?private_token=$gitlab_token 2>/dev/null |grep -w tag |awk -F: '{print $2}'|awk -F'"' '{print $2}')
+    latest_universechat_version=$(curl $UNIVERSECHAT_VERSION_INFO_URL 2>/dev/null |grep -w tag |awk -F: '{print $2}'|awk -F'"' '{print $2}')
 }
 
 get_universechat_current_version(){
@@ -950,7 +950,7 @@ do_update_node(){
 }
 
 do_upgrade_chatctl(){
-    curl -L $CHATCTL_DOWNLOAD_URL?private_token=$gitlab_token -o /tmp/chatctl
+    curl -L $CHATCTL_DOWNLOAD_URL -o /tmp/chatctl
     if  [ $? != 0 ]; then
         print_upgrade_download_chatctl_error_and_exit
     fi
@@ -1187,7 +1187,7 @@ main() {
     local bind_loopback=true
     local webserver=none
     local install_node_arg=0
-    local gitlab_token=$GITLAB_API_TOKEN
+    # local gitlab_token=$GITLAB_API_TOKEN
     local use_mongo_arg=0
     local webserver_arg=0
     local universe_mail_arg=0
