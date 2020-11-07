@@ -2,7 +2,6 @@
 
 # Pre-release Q3 2020 - Canary - 3.8.0-canary.rc.0
 readonly VERSION="3.8.0-canary.rc.0"
-# readonly GITLAB_TOKEN=$GITLAB_API_TOKEN
 readonly CHATCTL_DOWNLOAD_URL="https://raw.githubusercontent.com/MC2-Universe/chatctl/master/chatctl"
 readonly CHATCTL_DIRECTORY="/usr/local/bin"
 
