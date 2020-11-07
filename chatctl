@@ -1168,7 +1168,7 @@ main() {
     local -r UNIVERSECHAT_DIR_UPDATE="/opt/Universe.Chat.bkup"
     local -r UNIVERSECHAT_VERSION_INFO_URL="https://github.com/MC2-Universe/releases/releases/tag/$VERSION"
      
-    local -r CHATCTL_DOWNLOAD_URL="https://raw.githubusercontent.com/MC2-Universe/chatctl/master/chatctl"
+    local -r CHATCTL_DOWNLOAD_URL="https://raw.githubusercontent.com/MC2-Universe/chatctl/staging/chatctl"
     local -r CHATCTL_DIRECTORY="/usr/local/bin"
     local -r CHATCTL_TEMP_DIRECTORY="/tmp"
     
