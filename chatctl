@@ -1151,7 +1151,7 @@ do_backup(){
 
 main() {
     # Pre-release Q3 2020 - Canary - 3.8.0-canary.rc.0
-    local VERSION=$UNIVERSE_CHAT_VERSION || "Web-3.8.0-canary.0"
+    local VERSION="Web-3.8.0-canary.0"
     local VERSION_FILENAME="universe.chat.latest.tar.gz"
     # Temp GitLab key
     local GLKEY="pKsf_bUjQ6C5NJevR8mn"
